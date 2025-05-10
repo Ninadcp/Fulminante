@@ -366,6 +366,18 @@ M_.params(10) = 2;
 SIGMA = M_.params(10);
 M_.params(9) = 0.25;
 A = M_.params(9);
+d0     = 2.4;                 
+%
+% HISTVAL instructions
+%
+M_.histval_dseries = dseries(zeros(M_.orig_maximum_lag_with_diffs_expanded, M_.orig_endo_nbr+sum([M_.aux_vars.type]==6)+M_.exo_nbr), dates(sprintf('%dY', -M_.orig_maximum_lag_with_diffs_expanded+1)), [ M_.endo_names(1:M_.orig_endo_nbr); M_.endo_names([M_.aux_vars(find([M_.aux_vars.type]==6)).endo_index]); M_.exo_names; ]);
+M_.histval_dseries{'d'}(dates('-1Y'))=d0;
+if exist(['+' M_.fname '/dynamic_set_auxiliary_series.m'])
+  eval(['M_.histval_dseries = ' M_.fname '.dynamic_set_auxiliary_series(M_.histval_dseries, M_.params);']);
+end
+M_.endo_histval = M_.histval_dseries{M_.endo_names{:}}(dates(sprintf('%dY', 1-M_.maximum_lag)):dates('0Y')).data';
+M_.endo_histval(isnan(M_.endo_histval)) = 0;
+M_.exo_histval = M_.histval_dseries{M_.exo_names{:}}(dates(sprintf('%dY', 1-M_.maximum_lag)):dates('0Y')).data';
 steady;
 oo_.dr.eigval = check(M_,options_,oo_);
 %
@@ -379,7 +391,7 @@ options_.order = 1;
 options_.periods = 0;
 var_list_ = {};
 [info, oo_, options_, M_] = stoch_simul(M_, options_, oo_, var_list_);
-save TNTc1.mat M_ oo_ options_;
+save model_with_debt.mat M_ oo_ options_;
 
 
 oo_.time = toc(tic0);

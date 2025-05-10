@@ -21,7 +21,7 @@ var y_T c_T d tby cay p_N;
 varexo u_y_T; 
 
 // Parameters 
-parameters RHO1 RHO2 ETA_y y_N D_BAR BETA r_int PSI A SIGMA;
+parameters RHO ETA_y y_N D_BAR BETA r_int PSI alpha SIGMA;
 parameters y_T_ss d_ss c_T_ss tby_ss cay_ss p_N_ss;
 
 %----------------------------------------------------------------
@@ -30,16 +30,16 @@ parameters y_T_ss d_ss c_T_ss tby_ss cay_ss p_N_ss;
 
 // Calibarted parameteres 
 
-RHO   = 1.913;                 //inventado
-ETA_y  = 0.00011;
+RHO    = 0.2731;                 //STATA
+ETA_y  = 0.0656;                 //STATA
 y_N    = 1;
-D_BAR  = 0.85;
-BETA   = 0.9635;                // 1/(1 + r_int) if r_int = 0.04
+D_BAR  = 0.85;                  //NOSE
+BETA   = 0.9615;                // 1/(1 + r_int) si r_int = 0.04
 r_int  = 0.04;
 PSI    = 0.000742;
 SIGMA  = 2;
-A      = 0.25;
-d0     = 0.49;                 
+alpha      = 0.2;
+d0     = 0.49;                  //CALCULAMOS            
 
 %----------------------------------------------------------------
 % 3. Model Equations (n equations)
@@ -57,7 +57,7 @@ exp(c_T(+1))^SIGMA=BETA*(1+r_int+PSI*(exp(d-D_BAR)-1))*exp(c_T)^SIGMA;
 
 //Relative demand NT
 //p_N=(GAMMA*exp(c_T))/y_N;
-exp(p_N) = (A/(1-A))*(((exp(c_T))/y_N)^SIGMA);
+exp(p_N) = (alpha/(1-alpha))*(((exp(c_T))/y_N)^SIGMA);
 
 // Definition of current account as a ratio of gdp
 
@@ -69,7 +69,7 @@ tby = (exp(y_T) - exp(c_T));       // trade balance = output - consumption
 
 // Stochastic AR(2) process for produtivity
 
-(y_T-log(y_T_ss)) = RHO1*(y_T(-1) - log(y_T_ss)) + RHO2 * (y_T(-2) - log(y_T_ss)) + ETA_y * u_y_T;
+(y_T-log(y_T_ss)) = RHO*(y_T(-1) - log(y_T_ss)) + ETA_y * u_y_T;
 
 end;
 
@@ -91,7 +91,7 @@ y_T_ss   = 1;
 BETA     = 1 / (1 + r_int);                    // Consistent with r_int
 d_ss     = D_BAR;
 c_T_ss   = y_T_ss - (D_BAR * r_int) / (1 + r_int);
-p_N_ss   = A / (1 - A) * ((c_T_ss / y_N)^SIGMA);
+p_N_ss   = alpha / (1 - alpha) * ((c_T_ss / y_N)^SIGMA);
 tby_ss   = y_T_ss - c_T_ss;
 cay_ss   = 0;
 

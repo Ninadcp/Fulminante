@@ -22,13 +22,12 @@ function residual = dynamic_resid(T, y, x, params, steady_state, it_, T_flag)
 if T_flag
     T = TNTbase.dynamic_resid_tt(T, y, x, params, steady_state, it_);
 end
-residual = zeros(7, 1);
-    residual(1) = (exp(y(5))+y(2)) - (y(6)/(1+params(7)+params(8)*(exp(y(6)-params(5))-1))+exp(y(4)));
-    residual(2) = (exp(y(11))^params(10)) - ((1+params(7)+params(8)*(exp(y(6)-params(5))-1))*params(6)*T(1));
-    residual(3) = (exp(y(9))) - (params(9)/(1-params(9))*(exp(y(5))/params(4))^params(10));
-    residual(4) = (y(8)) - ((y(2)-y(6))/exp(y(4)));
-    residual(5) = (y(7)) - (exp(y(4))-exp(y(5)));
-    residual(6) = (y(4)-log(params(11))) - (params(3)*x(it_, 1)+params(1)*(y(1)-log(params(11)))+params(2)*(y(3)-log(params(11))));
-    residual(7) = (y(10)) - (y(1));
+residual = zeros(6, 1);
+    residual(1) = (exp(y(4))+y(2)) - (y(5)/(1+params(6)+params(7)*(exp(y(5)-params(4))-1))+exp(y(3)));
+    residual(2) = (exp(y(9))^params(9)) - ((1+params(6)+params(7)*(exp(y(5)-params(4))-1))*params(5)*T(1));
+    residual(3) = (exp(y(8))) - (params(8)/(1-params(8))*(exp(y(4))/params(3))^params(9));
+    residual(4) = (y(7)) - ((y(2)-y(5))/exp(y(3)));
+    residual(5) = (y(6)) - (exp(y(3))-exp(y(4)));
+    residual(6) = (y(3)-log(params(10))) - (params(1)*(y(1)-log(params(10)))+params(2)*x(it_, 1));
 
 end

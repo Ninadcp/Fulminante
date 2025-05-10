@@ -15,6 +15,6 @@ function T = static_resid_tt(T, y, x, params)
 
 assert(length(T) >= 1);
 
-T(1) = exp(y(2))^params(10);
+T(1) = exp(y(2))^params(9);
 
 end

@@ -6,5 +6,5 @@ T_order = 0;
 if size(T, 1) < 1
     T = [T; NaN(1 - size(T, 1), 1)];
 end
-T(1) = exp(y(9))^params(10);
+T(1) = exp(y(8))^params(9);
 end

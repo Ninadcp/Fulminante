@@ -17,6 +17,6 @@ assert(length(T) >= 2);
 
 T = TNTbase.static_resid_tt(T, y, x, params);
 
-T(2) = exp(y(2))*getPowerDeriv(exp(y(2)),params(10),1);
+T(2) = exp(y(2))*getPowerDeriv(exp(y(2)),params(9),1);
 
 end

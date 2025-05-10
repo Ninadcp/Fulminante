@@ -18,21 +18,18 @@ function g1 = static_g1(T, y, x, params, T_flag)
 if T_flag
     T = TNTbase.static_g1_tt(T, y, x, params);
 end
-g1 = zeros(7, 7);
+g1 = zeros(6, 6);
 g1(1,1)=(-exp(y(1)));
 g1(1,2)=exp(y(2));
-g1(1,3)=1-(1+params(7)+params(8)*(exp(y(3)-params(5))-1)-y(3)*params(8)*exp(y(3)-params(5)))/((1+params(7)+params(8)*(exp(y(3)-params(5))-1))*(1+params(7)+params(8)*(exp(y(3)-params(5))-1)));
-g1(2,2)=T(2)-(1+params(7)+params(8)*(exp(y(3)-params(5))-1))*params(6)*T(2);
-g1(2,3)=(-(T(1)*params(6)*params(8)*exp(y(3)-params(5))));
-g1(3,2)=(-(params(9)/(1-params(9))*exp(y(2))/params(4)*getPowerDeriv(exp(y(2))/params(4),params(10),1)));
+g1(1,3)=1-(1+params(6)+params(7)*(exp(y(3)-params(4))-1)-y(3)*params(7)*exp(y(3)-params(4)))/((1+params(6)+params(7)*(exp(y(3)-params(4))-1))*(1+params(6)+params(7)*(exp(y(3)-params(4))-1)));
+g1(2,2)=T(2)-(1+params(6)+params(7)*(exp(y(3)-params(4))-1))*params(5)*T(2);
+g1(2,3)=(-(T(1)*params(5)*params(7)*exp(y(3)-params(4))));
+g1(3,2)=(-(params(8)/(1-params(8))*exp(y(2))/params(3)*getPowerDeriv(exp(y(2))/params(3),params(9),1)));
 g1(3,6)=exp(y(6));
 g1(4,5)=1;
 g1(5,1)=(-exp(y(1)));
 g1(5,2)=exp(y(2));
 g1(5,4)=1;
 g1(6,1)=1-params(1);
-g1(6,7)=(-params(2));
-g1(7,1)=(-1);
-g1(7,7)=1;
 
 end

@@ -1,21 +1,20 @@
 Starting Dynare (version 6.3).
 Calling Dynare with arguments: none
 Starting preprocessing of the model file ...
-Substitution of endo lags >= 2: added 1 auxiliary variables and equations.
-Found 7 equation(s).
+Found 6 equation(s).
 Evaluating expressions...
 Computing static model derivatives (order 1).
 Normalizing the static model...
 Finding the optimal block decomposition of the static model...
 5 block(s) found:
-  3 recursive block(s) and 2 simultaneous block(s).
+  4 recursive block(s) and 1 simultaneous block(s).
   the largest simultaneous block has 2 equation(s)
                                  and 2 feedback variable(s).
 Computing dynamic model derivatives (order 1).
 Normalizing the dynamic model...
 Finding the optimal block decomposition of the dynamic model...
 4 block(s) found:
-  2 recursive block(s) and 2 simultaneous block(s).
+  3 recursive block(s) and 1 simultaneous block(s).
   the largest simultaneous block has 2 equation(s)
                                  and 2 feedback variable(s).
 Preprocessing completed.
@@ -23,17 +22,16 @@ Preprocessing time: 0h00m00s.
 
 STEADY-STATE RESULTS:
 
-y_T              		 0
-c_T              		 -0.0332386
-d                		 0.85
-tby              		 0.0326923
-cay              		 0
-p_N              		 -1.16509
+y_T 		 0
+c_T 		 -0.0332386
+d   		 0.85
+tby 		 0.0326923
+cay 		 0
+p_N 		 -1.45277
 
 EIGENVALUES:
          Modulus             Real        Imaginary
-          0.9266           0.9266                0
-          0.9864           0.9864                0
+          0.2731           0.2731                0
           0.9926           0.9926                0
            1.048            1.048                0
 
@@ -41,57 +39,18 @@ There are 1 eigenvalue(s) larger than 1 in modulus for 1 forward-looking variabl
 The rank condition is verified.
 
 
-MODEL SUMMARY
+--------------------------------------------------------
+MODEL SIMULATION:
 
-  Number of variables:         7
-  Number of stochastic shocks: 1
-  Number of state variables:   3
-  Number of jumpers:           1
-  Number of static variables:  3
+Iter: 1,	 err. = 0.0639478,	 time = 0.929079
+Iter: 2,	 err. = 0.00122965,	 time = 0.008493
+Iter: 3,	 err. = 5.18716e-07,	 time = 0.015145
 
-
-MATRIX OF COVARIANCE OF EXOGENOUS SHOCKS
-Variables       u_y_T
-u_y_T        1.000000
-
-POLICY AND TRANSITION FUNCTIONS
-                                 y_T             c_T               d             tby             cay             p_N
-Constant                           0       -0.033239        0.850000        0.032692               0       -1.165090
-y_T(-1)                     1.913000        7.230911        5.287983       -5.081515       -5.287983       14.461821
-d(-1)                              0       -0.047733        0.992582        0.046173        0.007418       -0.095467
-y_T(-2)                    -0.914000       -6.347521       -5.438344        5.226006        5.438344      -12.695042
-u_y_T                       0.000110        0.000764        0.000655       -0.000629       -0.000655        0.001528
+Total time of simulation: 0.964118.
+--------------------------------------------------------
 
 
-THEORETICAL MOMENTS
-VARIABLE         MEAN  STD. DEV.   VARIANCE
-y_T            0.0000     0.0084     0.0001
-c_T           -0.0332     0.0104     0.0001
-d              0.8500     0.1115     0.0124
-tby            0.0327     0.0047     0.0000
-cay            0.0000     0.0019     0.0000
-p_N           -1.1651     0.0208     0.0004
+Perfect foresight solution found.
 
-
-
-MATRIX OF CORRELATIONS
-Variables        y_T      c_T        d      tby      cay      p_N
-y_T           1.0000   0.8848  -0.3309  -0.1108   0.4923   0.8848
-c_T           0.8848   1.0000  -0.7064  -0.5611   0.2285   1.0000
-d            -0.3309  -0.7064   1.0000   0.9188  -0.0084  -0.7064
-tby          -0.1108  -0.5611   0.9188   1.0000   0.3871  -0.5611
-cay           0.4923   0.2285  -0.0084   0.3871   1.0000   0.2285
-p_N           0.8848   1.0000  -0.7064  -0.5611   0.2285   1.0000
-
-
-
-COEFFICIENTS OF AUTOCORRELATION
-Order          1       2       3       4       5
-y_T       0.9995  0.9980  0.9957  0.9925  0.9886
-c_T       0.9973  0.9946  0.9919  0.9891  0.9863
-d         0.9999  0.9995  0.9988  0.9979  0.9969
-tby       0.9898  0.9802  0.9709  0.9621  0.9536
-cay       0.9329  0.8706  0.8126  0.7586  0.7083
-p_N       0.9973  0.9946  0.9919  0.9891  0.9863
-Total computing time : 0h00m00s
+Total computing time : 0h00m01s
 Note: warning(s) encountered in MATLAB/Octave code

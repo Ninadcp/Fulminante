@@ -22,28 +22,25 @@ function g1 = dynamic_g1(T, y, x, params, steady_state, it_, T_flag)
 if T_flag
     T = TNTbase.dynamic_g1_tt(T, y, x, params, steady_state, it_);
 end
-g1 = zeros(7, 12);
-g1(1,4)=(-exp(y(4)));
-g1(1,5)=exp(y(5));
+g1 = zeros(6, 10);
+g1(1,3)=(-exp(y(3)));
+g1(1,4)=exp(y(4));
 g1(1,2)=1;
-g1(1,6)=(-((1+params(7)+params(8)*(exp(y(6)-params(5))-1)-y(6)*params(8)*exp(y(6)-params(5)))/((1+params(7)+params(8)*(exp(y(6)-params(5))-1))*(1+params(7)+params(8)*(exp(y(6)-params(5))-1)))));
-g1(2,5)=(-((1+params(7)+params(8)*(exp(y(6)-params(5))-1))*params(6)*exp(y(5))*getPowerDeriv(exp(y(5)),params(10),1)));
-g1(2,11)=exp(y(11))*getPowerDeriv(exp(y(11)),params(10),1);
-g1(2,6)=(-(T(1)*params(6)*params(8)*exp(y(6)-params(5))));
-g1(3,5)=(-(params(9)/(1-params(9))*exp(y(5))/params(4)*getPowerDeriv(exp(y(5))/params(4),params(10),1)));
-g1(3,9)=exp(y(9));
-g1(4,4)=(-((-(exp(y(4))*(y(2)-y(6))))/(exp(y(4))*exp(y(4)))));
-g1(4,2)=(-(1/exp(y(4))));
-g1(4,6)=(-((-1)/exp(y(4))));
-g1(4,8)=1;
-g1(5,4)=(-exp(y(4)));
-g1(5,5)=exp(y(5));
-g1(5,7)=1;
+g1(1,5)=(-((1+params(6)+params(7)*(exp(y(5)-params(4))-1)-y(5)*params(7)*exp(y(5)-params(4)))/((1+params(6)+params(7)*(exp(y(5)-params(4))-1))*(1+params(6)+params(7)*(exp(y(5)-params(4))-1)))));
+g1(2,4)=(-((1+params(6)+params(7)*(exp(y(5)-params(4))-1))*params(5)*exp(y(4))*getPowerDeriv(exp(y(4)),params(9),1)));
+g1(2,9)=exp(y(9))*getPowerDeriv(exp(y(9)),params(9),1);
+g1(2,5)=(-(T(1)*params(5)*params(7)*exp(y(5)-params(4))));
+g1(3,4)=(-(params(8)/(1-params(8))*exp(y(4))/params(3)*getPowerDeriv(exp(y(4))/params(3),params(9),1)));
+g1(3,8)=exp(y(8));
+g1(4,3)=(-((-(exp(y(3))*(y(2)-y(5))))/(exp(y(3))*exp(y(3)))));
+g1(4,2)=(-(1/exp(y(3))));
+g1(4,5)=(-((-1)/exp(y(3))));
+g1(4,7)=1;
+g1(5,3)=(-exp(y(3)));
+g1(5,4)=exp(y(4));
+g1(5,6)=1;
 g1(6,1)=(-params(1));
-g1(6,4)=1;
-g1(6,12)=(-params(3));
-g1(6,3)=(-params(2));
-g1(7,1)=(-1);
-g1(7,10)=1;
+g1(6,3)=1;
+g1(6,10)=(-params(2));
 
 end

@@ -4,12 +4,11 @@ if nargin < 6
     T = NaN(1, 1);
 end
 [T_order, T] = TNTbase.sparse.dynamic_resid_tt(y, x, params, steady_state, T_order, T);
-residual = NaN(7, 1);
-    residual(1) = (exp(y(9))+y(3)) - (y(10)/(1+params(7)+params(8)*(exp(y(10)-params(5))-1))+exp(y(8)));
-    residual(2) = (exp(y(16))^params(10)) - ((1+params(7)+params(8)*(exp(y(10)-params(5))-1))*params(6)*T(1));
-    residual(3) = (exp(y(13))) - (params(9)/(1-params(9))*(exp(y(9))/params(4))^params(10));
-    residual(4) = (y(12)) - ((y(3)-y(10))/exp(y(8)));
-    residual(5) = (y(11)) - (exp(y(8))-exp(y(9)));
-    residual(6) = (y(8)-log(params(11))) - (params(3)*x(1)+params(1)*(y(1)-log(params(11)))+params(2)*(y(7)-log(params(11))));
-    residual(7) = (y(14)) - (y(1));
+residual = NaN(6, 1);
+    residual(1) = (exp(y(8))+y(3)) - (y(9)/(1+params(6)+params(7)*(exp(y(9)-params(4))-1))+exp(y(7)));
+    residual(2) = (exp(y(14))^params(9)) - ((1+params(6)+params(7)*(exp(y(9)-params(4))-1))*params(5)*T(1));
+    residual(3) = (exp(y(12))) - (params(8)/(1-params(8))*(exp(y(8))/params(3))^params(9));
+    residual(4) = (y(11)) - ((y(3)-y(9))/exp(y(7)));
+    residual(5) = (y(10)) - (exp(y(7))-exp(y(8)));
+    residual(6) = (y(7)-log(params(10))) - (params(1)*(y(1)-log(params(10)))+params(2)*x(1));
 end

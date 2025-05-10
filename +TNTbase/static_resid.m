@@ -18,13 +18,12 @@ function residual = static_resid(T, y, x, params, T_flag)
 if T_flag
     T = TNTbase.static_resid_tt(T, y, x, params);
 end
-residual = zeros(7, 1);
-    residual(1) = (exp(y(2))+y(3)) - (y(3)/(1+params(7)+params(8)*(exp(y(3)-params(5))-1))+exp(y(1)));
-    residual(2) = (T(1)) - (T(1)*(1+params(7)+params(8)*(exp(y(3)-params(5))-1))*params(6));
-    residual(3) = (exp(y(6))) - (params(9)/(1-params(9))*(exp(y(2))/params(4))^params(10));
+residual = zeros(6, 1);
+    residual(1) = (exp(y(2))+y(3)) - (y(3)/(1+params(6)+params(7)*(exp(y(3)-params(4))-1))+exp(y(1)));
+    residual(2) = (T(1)) - (T(1)*(1+params(6)+params(7)*(exp(y(3)-params(4))-1))*params(5));
+    residual(3) = (exp(y(6))) - (params(8)/(1-params(8))*(exp(y(2))/params(3))^params(9));
 residual(4) = y(5);
     residual(5) = (y(4)) - (exp(y(1))-exp(y(2)));
-    residual(6) = (y(1)-log(params(11))) - (params(3)*x(1)+(y(1)-log(params(11)))*params(1)+params(2)*(y(7)-log(params(11))));
-    residual(7) = (y(7)) - (y(1));
+    residual(6) = (y(1)-log(params(10))) - ((y(1)-log(params(10)))*params(1)+params(2)*x(1));
 
 end

@@ -3,7 +3,7 @@ close all;
  
 
 % Opciones
-plot_options.model_names={'model_with_debt'}; % Nombre de los .mat creados al final del correr Dynare correspondientes a los distintos modelos
+plot_options.model_names={'modelNINA1'}; % Nombre de los .mat creados al final del correr Dynare correspondientes a los distintos modelos
 shocks        ={'y_T'}; %nombre de variables shockeadas, con el mismo nombre que el declarado en Dynare (este programa asume que si la vraiable es, por ejemplo, 'a', el shocks es llamado 'u_a' en el mod-file)
 shocks_latex  ={'y_t'}; %nombre que aparecera en el titulo de cada IRF para cada variable ex�gena. Se permite escribir en formato LaTex
 

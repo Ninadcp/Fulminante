@@ -1,6 +1,6 @@
 %----------------------------------------------------------------
 % FULMINANTE
-% Autores: Anchorena....
+% Integrantes: 
 %----------------------------------------------------------------
 
 %----------------------------------------------------------------
@@ -32,14 +32,15 @@ parameters y_T_ss d_ss c_T_ss tby_ss cay_ss p_N_ss;
 
 RHO    = 0.2731;                 //STATA
 ETA_y  = 0.0656;                 //STATA
-y_N    = 1;
-D_BAR  = 0.85;                  //NOSE
+y_N    = 4;
+D_BAR  = 4.07;                  //NOSE
 BETA   = 0.9615;                // 1/(1 + r_int) si r_int = 0.04
 r_int  = 0.04;
 PSI    = 0.000742;
 SIGMA  = 2;
-alpha      = 0.2;
-d0     = 0.49;                  //CALCULAMOS            
+alpha  = 0.2;
+d0     = 2.36;                  //CALCULAMOS            
+               
 
 %----------------------------------------------------------------
 % 3. Model Equations (n equations)
@@ -48,15 +49,12 @@ d0     = 0.49;                  //CALCULAMOS
 model; 
 
 // Resource constraint
-//exp(c_T)+d=(d(+1)/(1+r_int+PSI*(exp(d(-1)-D_BAR)-1)))+exp(y_T);
 exp(c_T)+d(-1)=(d/(1+r_int+PSI*(exp(d-D_BAR)-1)))+exp(y_T);
 
 // Euler
-//exp(c_T(+1))^SIGMA=BETA*(1+r_int+PSI*(exp(d(-1)-D_BAR)-1))*exp(c_T)^SIGMA;
 exp(c_T(+1))^SIGMA=BETA*(1+r_int+PSI*(exp(d-D_BAR)-1))*exp(c_T)^SIGMA;
 
 //Relative demand NT
-//p_N=(GAMMA*exp(c_T))/y_N;
 exp(p_N) = (alpha/(1-alpha))*(((exp(c_T))/y_N)^SIGMA);
 
 // Definition of current account as a ratio of gdp
@@ -69,12 +67,20 @@ tby = (exp(y_T) - exp(c_T));       // trade balance = output - consumption
 
 // Stochastic AR(1) process for produtivity
 
-(y_T-log(y_T_ss)) = RHO*(y_T(-1) - log(y_T_ss)) + ETA_y * u_y_T;
+(y_T-log(y_T_ss)) = (RHO)*(y_T(-1) - log(y_T_ss)) + ETA_y * u_y_T;
 
 end;
 
 %----------------------------------------------------------------
-% 5. Steady State
+% 5. Initial Debt for Simulation
+%----------------------------------------------------------------
+
+histval;
+  d(-1) = d0;     // Initial debt = 2.36
+end;
+
+%----------------------------------------------------------------
+% 6. Steady State
 %----------------------------------------------------------------
 
 steady_state_model;
@@ -117,30 +123,10 @@ end;
 % 9. Simulation (Impulse Response Functions)
 %----------------------------------------------------------------
 
-initval;
-    y_T = log(y_T_ss);
-    d = d0;             // Initial value of d (used to be in histval)
-    d(-1) = d0;         // Lag of debt (if needed explicitly)
-    c_T = log(c_T_ss);
-    p_N = log(p_N_ss);
-    tby = tby_ss;
-    cay = cay_ss;
-end;
+stoch_simul(order = 1, irf = 100, periods = 0, nograph);
 
-endval;
-    y_T = log(1.05); // Apply deterministic shock here (e.g., +5%)
-    d = d0;
-    d(-1) = d0;
-    c_T = log(c_T_ss);
-    p_N = log(p_N_ss);
-    tby = tby_ss;
-    cay = cay_ss;
-end;
-
-perfect_foresight_setup(periods=20);
-perfect_foresight_solver;
 %----------------------------------------------------------------
 % 10. Save Results
 %----------------------------------------------------------------
 
-save model_with_debt.mat M_ oo_ options_;
+save modelNINA1.mat M_ oo_ options_;

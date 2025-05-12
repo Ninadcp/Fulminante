@@ -280,7 +280,7 @@ M_.block_structure_stat.block(3).Simulation_Type = 6;
 M_.block_structure_stat.block(3).endo_nbr = 2;
 M_.block_structure_stat.block(3).mfs = 2;
 M_.block_structure_stat.block(3).equation = [ 2 1];
-M_.block_structure_stat.block(3).variable = [ 3 2];
+M_.block_structure_stat.block(3).variable = [ 2 3];
 M_.block_structure_stat.block(4).Simulation_Type = 1;
 M_.block_structure_stat.block(4).endo_nbr = 1;
 M_.block_structure_stat.block(4).mfs = 1;
@@ -291,7 +291,7 @@ M_.block_structure_stat.block(5).endo_nbr = 1;
 M_.block_structure_stat.block(5).mfs = 1;
 M_.block_structure_stat.block(5).equation = [ 3];
 M_.block_structure_stat.block(5).variable = [ 6];
-M_.block_structure_stat.variable_reordered = [ 5 1 3 2 4 6];
+M_.block_structure_stat.variable_reordered = [ 5 1 2 3 4 6];
 M_.block_structure_stat.equation_reordered = [ 4 6 2 1 5 3];
 M_.block_structure_stat.incidence.sparse_IM = [
  1 1;
@@ -332,9 +332,9 @@ M_.params(1) = 0.2731;
 RHO = M_.params(1);
 M_.params(2) = 0.0656;
 ETA_y = M_.params(2);
-M_.params(3) = 1;
+M_.params(3) = 4;
 y_N = M_.params(3);
-M_.params(4) = 0.85;
+M_.params(4) = 4.07;
 D_BAR = M_.params(4);
 M_.params(5) = 0.9615;
 BETA = M_.params(5);
@@ -346,7 +346,7 @@ M_.params(9) = 2;
 SIGMA = M_.params(9);
 M_.params(8) = 0.2;
 alpha = M_.params(8);
-d0     = 0.49;                  
+d0     = 2.36;                  
 steady;
 oo_.dr.eigval = check(M_,options_,oo_);
 %
@@ -375,7 +375,7 @@ end
 %
 oo_.initial_steady_state = oo_.steady_state;
 oo_.initial_exo_steady_state = oo_.exo_steady_state;
-oo_.steady_state(1) = 0.04879016416943205;
+oo_.steady_state(1) = 0.09531017980432493;
 oo_.steady_state(3) = d0;
 oo_.steady_state(2) = log(M_.params(12));
 oo_.steady_state(6) = log(M_.params(15));

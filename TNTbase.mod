@@ -18,7 +18,7 @@ warning off ;
 var y_T c_T d tby cay p_N; 
 
 // Exogenous variables 
-varexo u_y_T; 
+//varexo u_y_T; 
 
 // Parameters 
 parameters RHO ETA_y y_N D_BAR BETA r_int PSI alpha SIGMA;
@@ -48,15 +48,12 @@ d0     = 2.36;                  //CALCULAMOS
 model; 
 
 // Resource constraint
-//exp(c_T)+d=(d(+1)/(1+r_int+PSI*(exp(d(-1)-D_BAR)-1)))+exp(y_T);
 exp(c_T)+d(-1)=(d/(1+r_int+PSI*(exp(d-D_BAR)-1)))+exp(y_T);
 
 // Euler
-//exp(c_T(+1))^SIGMA=BETA*(1+r_int+PSI*(exp(d(-1)-D_BAR)-1))*exp(c_T)^SIGMA;
 exp(c_T(+1))^SIGMA=BETA*(1+r_int+PSI*(exp(d-D_BAR)-1))*exp(c_T)^SIGMA;
 
 //Relative demand NT
-//p_N=(GAMMA*exp(c_T))/y_N;
 exp(p_N) = (alpha/(1-alpha))*(((exp(c_T))/y_N)^SIGMA);
 
 // Definition of current account as a ratio of gdp
@@ -68,8 +65,9 @@ cay = (d(-1) - d)/exp(y_T);        // current account = Δdebt / GDP
 tby = (exp(y_T) - exp(c_T));       // trade balance = output - consumption
 
 // Stochastic AR(1) process for produtivity
+//(y_T-log(y_T_ss)) = RHO*(y_T(-1) - log(y_T_ss)) + ETA_y * u_y_T;
 
-(y_T-log(y_T_ss)) = RHO*(y_T(-1) - log(y_T_ss)) + ETA_y * u_y_T;
+Y
 
 end;
 
@@ -109,9 +107,9 @@ check; // Check that the solution is unique
 %----------------------------------------------------------------
 // Defining variance of exogneous variables
 
-shocks;
-    var u_y_T = 1;
-end;
+//shocks;
+  //  var u_y_T = 1;
+//end;
 
 %----------------------------------------------------------------
 % 9. Simulation (Impulse Response Functions)
@@ -119,8 +117,7 @@ end;
 
 initval;
     y_T = log(y_T_ss);
-    d = d0;             // Initial value of d (used to be in histval)
-           // Lag of debt (if needed explicitly)
+    d = d0;             // Initial value of d (formerly used to be in histval)
     c_T = log(c_T_ss);
     p_N = log(p_N_ss);
     tby = tby_ss;
@@ -128,8 +125,8 @@ initval;
 end;
 
 endval;
-    y_T = log(1.05); // Apply deterministic shock here (e.g., +5%)
-    d = d0;
+    y_T = log(1.1);    // Apply deterministic shock here (+ 10%)
+    d   = D_BAR;       //Detbt never changed?
     c_T = log(c_T_ss);
     p_N = log(p_N_ss);
     tby = tby_ss;

@@ -1,0 +1,97 @@
+Starting Dynare (version 6.3).
+Calling Dynare with arguments: none
+Starting preprocessing of the model file ...
+Substitution of endo lags >= 2: added 1 auxiliary variables and equations.
+Found 7 equation(s).
+Evaluating expressions...
+Computing static model derivatives (order 1).
+Normalizing the static model...
+Finding the optimal block decomposition of the static model...
+5 block(s) found:
+  3 recursive block(s) and 2 simultaneous block(s).
+  the largest simultaneous block has 2 equation(s)
+                                 and 2 feedback variable(s).
+Computing dynamic model derivatives (order 1).
+Normalizing the dynamic model...
+Finding the optimal block decomposition of the dynamic model...
+4 block(s) found:
+  2 recursive block(s) and 2 simultaneous block(s).
+  the largest simultaneous block has 2 equation(s)
+                                 and 2 feedback variable(s).
+Preprocessing completed.
+Preprocessing time: 0h00m00s.
+
+STEADY-STATE RESULTS:
+
+y_T              		 0
+c_T              		 -0.0332386
+d                		 0.85
+tby              		 0.0326923
+cay              		 0
+p_N              		 -1.16509
+
+EIGENVALUES:
+         Modulus             Real        Imaginary
+          0.9291           0.9291                0
+          0.9859           0.9859                0
+          0.9926           0.9926                0
+           1.048            1.048                0
+
+There are 1 eigenvalue(s) larger than 1 in modulus for 1 forward-looking variable(s)
+The rank condition is verified.
+
+
+MODEL SUMMARY
+
+  Number of variables:         7
+  Number of stochastic shocks: 1
+  Number of state variables:   3
+  Number of jumpers:           1
+  Number of static variables:  3
+
+
+MATRIX OF COVARIANCE OF EXOGENOUS SHOCKS
+Variables       u_y_T
+u_y_T        1.000000
+
+POLICY AND TRANSITION FUNCTIONS
+                                 y_T             c_T               d             tby             cay             p_N
+Constant                           0       -0.033239        0.850000        0.032692               0       -1.165090
+y_T(-1)                     1.915000        7.325428        5.381044       -5.170943       -5.381044       14.650856
+d(-1)                              0       -0.047733        0.992582        0.046173        0.007418       -0.095467
+y_T(-2)                    -0.916000       -6.443991       -5.533371        5.317322        5.533371      -12.887982
+u_y_T                       0.000295        0.002075        0.001782       -0.001712       -0.001782        0.004151
+
+
+THEORETICAL MOMENTS
+VARIABLE         MEAN  STD. DEV.   VARIANCE
+y_T            0.0000     0.0228     0.0005
+c_T           -0.0332     0.0282     0.0008
+d              0.8500     0.3051     0.0931
+tby            0.0327     0.0129     0.0002
+cay            0.0000     0.0051     0.0000
+p_N           -1.1651     0.0564     0.0032
+
+
+
+MATRIX OF CORRELATIONS
+Variables        y_T      c_T        d      tby      cay      p_N
+y_T           1.0000   0.8817  -0.3218  -0.0995   0.4959   0.8817
+c_T           0.8817   1.0000  -0.7037  -0.5571   0.2292   1.0000
+d            -0.3218  -0.7037   1.0000   0.9178  -0.0084  -0.7037
+tby          -0.0995  -0.5571   0.9178   1.0000   0.3894  -0.5571
+cay           0.4959   0.2292  -0.0084   0.3894   1.0000   0.2292
+p_N           0.8817   1.0000  -0.7037  -0.5571   0.2292   1.0000
+
+
+
+COEFFICIENTS OF AUTOCORRELATION
+Order          1       2       3       4       5
+y_T       0.9995  0.9980  0.9956  0.9925  0.9886
+c_T       0.9973  0.9946  0.9918  0.9890  0.9862
+d         0.9999  0.9995  0.9988  0.9979  0.9968
+tby       0.9900  0.9804  0.9712  0.9624  0.9539
+cay       0.9346  0.8736  0.8166  0.7636  0.7140
+p_N       0.9973  0.9946  0.9918  0.9890  0.9862
+Total computing time : 0h00m00s
+Note: warning(s) encountered in MATLAB/Octave code
